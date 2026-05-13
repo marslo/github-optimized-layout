@@ -43,14 +43,16 @@
     margin-right: auto !important;
   }
 
-  /* ── 2. Force FULL WIDTH for Detail Pages (Diffs/Commits) ────── */
+  /* ── 2. Force FULL WIDTH for Detail Pages (Diffs/Commits/Code) ─ */
   [class*="PageLayoutRoot"]:has([id^="diff-"]),
   [class*="PageLayoutRoot"]:has([data-testid="commit-header"]),
   [class*="PageLayoutRoot"]:has([class*="CommitHeader-module"]),
   react-app[app-name="commit"] [class*="PageLayoutRoot"],
   /* PR Checks: diff-comparison-viewer-container wraps PageLayoutRoot (not inside it) */
   #diff-comparison-viewer-container [class*="PageLayoutRoot"],
-  [class*="DiffComparisonViewer-module"] [class*="PageLayoutRoot"] {
+  [class*="DiffComparisonViewer-module"] [class*="PageLayoutRoot"],
+  /* Repository file browser (tree & blob view) */
+  [class*="PageLayoutRoot"]:has([class*="ReposFileTree"]) {
     max-width: 100% !important;
     width: 100% !important;
   }
@@ -113,6 +115,9 @@
 
   /* ── 6. Accessibility ────────────────────────────────────────── */
   [class*="rgh-"] .flash.flash-error { display: none !important; }
+  /* Hide RGH whitespace markers on non-diff pages */
+  /* csslint ignore:start */
   body:not(:has(#diff-comparison-viewer-container)) [data-rgh-whitespace="space"] { background-image: none !important; }
+  /* csslint ignore:end */
 
 } /* @-moz-document: github.com */
