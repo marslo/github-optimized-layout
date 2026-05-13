@@ -1,0 +1,118 @@
+/* ==UserStyle==
+@name           Github Optimized Layout
+@version        1.0.0
+@namespace      github.com/marslo
+@description    Optimized layout for github.com and gist.github.com, with a max width of 85vw and full-width diffs/commits. Also includes some minor component fixes for PR lists and merge boxes. Based on the "Github Full Width" style by user 1j01, but with a more targeted approach to avoid breaking pages that rely on the default 100% width (like Actions and Security). The style uses a combination of root-level variables for easy customization and specific selectors to ensure it only affects the intended layout containers. The goal is to provide a more comfortable reading experience without sacrificing functionality or breaking any pages.
+@author         marslo
+@homepageURL    https://github.com/marslo/github-optimized-layout
+@updateURL      https://github.com/marslo/github-optimized-layout/raw/main/github-optimized-layout.user.css
+==/UserStyle== */
+
+@-moz-document domain("github.com") {
+
+  /**
+   * github.com / gist.github.com
+  **/
+
+  /* ╔════════════════════════════════════════════════════════════╗ */
+  /* ║                   GITHUB OPTIMIZED LAYOUT                  ║ */
+  /* ╚════════════════════════════════════════════════════════════╝ */
+
+  /* centralized management */
+  :root {
+    --gh-custom-width: min(85vw, 100%);
+    --gh-min-width: 900px;
+  }
+
+  /* ── 1. Basic layouts: Set the 85vw limit by default ─────────── */
+  [class*="PageLayoutRoot"],
+  [class*="ContentWrapper-module__contentContainer"],
+  .container-xl,
+  .container-lg,
+  .js-check-all-container.container-xl,
+  #gist-pjax-container .container-xl,
+  .container-lg:has(.gist-content),
+  /* Issue create pane (no PageLayoutRoot, previously relied on turbo-frame cap) */
+  [class*="IssueCreatePage-module__createPane"],
+  [class*="IssueCreatePage-module__createPaneContainer"],
+  [class*="IssueCreatePane-module__createPane"],
+  [class*="IssueCreatePane-module__createPaneContainer"] {
+    max-width: var(--gh-custom-width) !important;
+    min-width: var(--gh-min-width) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* ── 2. Force FULL WIDTH for Detail Pages (Diffs/Commits) ────── */
+  [class*="PageLayoutRoot"]:has([id^="diff-"]),
+  [class*="PageLayoutRoot"]:has([data-testid="commit-header"]),
+  [class*="PageLayoutRoot"]:has([class*="CommitHeader-module"]),
+  react-app[app-name="commit"] [class*="PageLayoutRoot"],
+  /* PR Checks: diff-comparison-viewer-container wraps PageLayoutRoot (not inside it) */
+  #diff-comparison-viewer-container [class*="PageLayoutRoot"],
+  [class*="DiffComparisonViewer-module"] [class*="PageLayoutRoot"] {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* ── 3. Inner containers: Stretch to fill the parent ─────────── */
+  [class*="PageLayoutRoot"] .container-lg,
+  [class*="PageLayoutRoot"] .container-xl,
+  [class*="PageLayoutRoot"] [class*="PageLayout-"]:not([class*="Pane"]),
+  [class*="PageLayoutRoot"] [class*="PageLayoutWrapper"],
+  [class*="PageLayoutRoot"] [class*="ThreePanesLayout"],
+  [class*="PageLayoutRoot"] [data-width="large"],
+  [class*="PageLayoutRoot"] [data-width="xlarge"],
+  [class*="PageLayoutRoot"] [data-width="full"],
+  [class*="Layout-main-centered"] {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Deep-dive structure fixes */
+  :is([class*="IssueCreatePage-module"], [class*="IssueCreatePane-module"], [class*="ThreePanesLayout"]) > div {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* PR Conversation specific fix */
+  [class*="Conversations-module__wrapper"] {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* ── 4. Settings & Centered Layout ───────────────────────────── */
+  [class*="Layout-main-centered"] [class*="container-"] {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* ── 5. Component fine-tuning ────────────────────────────────── */
+  /* PR list metadata line layout fix */
+  .js-check-all-container div[style*="word-break: break-all"] {
+    word-break: normal !important;
+    flex-wrap: nowrap !important;
+  }
+  .js-check-all-container .opened-by {
+    flex: 0 1 auto !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+  }
+
+  /* PR merge input box width */
+  [class*="MergeBox-module"] :is(span[class*="TextInputWrapper"], input[class*="Input"]) {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Copilot / Releases / Gist Sidebars */
+  [class*="__markersWrapper__"], [class*="AutomatedReviewDiffEntry"] { max-width: 45vw !important; width: 45vw !important; }
+  .col-md-2.flex-md-column { flex: 0 0 auto !important; max-width: 200px !important; }
+  .gistsearch-aside, #gist-pjax-container .h-card { flex: 0 0 300px !important; max-width: 300px !important; }
+  .container-xl .col-3:has(experimental-action-list) { flex: 0 0 auto !important; max-width: 300px !important; }
+
+  /* ── 6. Accessibility ────────────────────────────────────────── */
+  [class*="rgh-"] .flash.flash-error { display: none !important; }
+  body:not(:has(#diff-comparison-viewer-container)) [data-rgh-whitespace="space"] { background-image: none !important; }
+
+} /* @-moz-document: github.com */
