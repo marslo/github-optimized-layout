@@ -71,7 +71,7 @@
     width: 100% !important;
   }
 
-  /* Deep-dive structure fixes */
+  /* deep-dive structure fixes */
   :is([class*="IssueCreatePage-module"], [class*="IssueCreatePane-module"], [class*="ThreePanesLayout"]) > div {
     max-width: 100% !important;
     width: 100% !important;
@@ -94,10 +94,21 @@
   .js-check-all-container div[style*="word-break: break-all"] {
     word-break: normal !important;
     flex-wrap: nowrap !important;
+    /* ensure that text, labels, and branch names are vertically aligned. */
+    align-items: center !important;
   }
   .js-check-all-container .opened-by {
     flex: 0 1 auto !important;
+    /* allow it to be compressed to a size smaller than the content width */
+    min-width: 0 !important;
     overflow: hidden !important;
+    white-space: nowrap !important;
+    /* show as ... when overflow */
+    text-overflow: ellipsis !important;
+  }
+  /* prevent subsequent sibling nodes (review required, update time, branch name) being squeezed or forced to wrap to a newline */
+  .js-check-all-container div[style*="word-break: break-all"] > *:not(.opened-by) {
+    flex-shrink: 0 !important;
     white-space: nowrap !important;
   }
 
