@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/marslo/github-optimized-layout/compare/v1.0.2...v1.0.3) (2026-05-15)
+
+### Bug Fixes
+
+* fix(action): fixed the bug that limited the width (85vw) of the Action and Models page
+  - identity full-width React page automatically by excluding the app-name="code-view"
+
+  Signed-off-by: marslo <marslo.jiao@gmail.com>
+
 ## [1.0.2](https://github.com/marslo/github-optimized-layout/compare/v1.0.1...v1.0.2) (2026-05-15)
 
 ### CI/CD
