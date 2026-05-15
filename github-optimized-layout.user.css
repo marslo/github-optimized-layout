@@ -52,7 +52,14 @@
   #diff-comparison-viewer-container [class*="PageLayoutRoot"],
   [class*="DiffComparisonViewer-module"] [class*="PageLayoutRoot"],
   /* Repository file browser (tree & blob view) */
-  [class*="PageLayoutRoot"]:has([class*="ReposFileTree"]) {
+  [class*="PageLayoutRoot"]:has([class*="ReposFileTree"]),
+  /* github actions */
+  body:has(#actions-tab[aria-current="page"]) .container-xl,
+  body:has(#actions-tab[aria-current="page"]) .container-lg,
+  .container-xl:has(split-page-layout),
+  .container-xl:has([data-url*="/actions/runs/"]),
+  /* identity full-width React page automatically - i.e.: Models Tab */
+  body:not(:has(react-app[app-name="code-view"])) [class*="PageLayoutRoot"]:not([class*="ThreePanesLayout"]):has([data-width="full"]) {
     max-width: 100% !important;
     width: 100% !important;
   }

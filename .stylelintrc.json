@@ -14,7 +14,7 @@
     }],
     "selector-pseudo-element-no-unknown": true,
     "selector-type-no-unknown": [true, {
-      "ignoreTypes": ["react-app", "turbo-frame", "experimental-action-list", "details-partial"]
+      "ignoreTypes": ["react-app", "turbo-frame", "experimental-action-list", "details-partial", "split-page-layout"]
     }],
     "no-descending-specificity": null,
     "declaration-no-important": null
