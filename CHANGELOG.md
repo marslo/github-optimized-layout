@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/marslo/github-optimized-layout/compare/v1.0.1...v1.0.2) (2026-05-15)
+
+### CI/CD
+
+* ci: introduce the semantic-release rc file, and update the version in css automatically
+  Signed-off-by: marslo <marslo.jiao@gmail.com>
+
 ## [1.0.1](https://github.com/marslo/github-optimized-layout/compare/v1.0.0...v1.0.1) (2026-05-14)
 
 ### Bug Fixes
