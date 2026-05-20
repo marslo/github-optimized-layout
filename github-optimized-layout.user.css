@@ -138,34 +138,45 @@
   body:not(:has(#diff-comparison-viewer-container)) [data-rgh-whitespace="space"] { background-image: none !important; }
   /* csslint ignore:end */
 
-  /* ── 7. Contribution Calendar (Activity Graph) ─────────────── */
-  /* force all parent element to 100% to prevent the flex container from shrinking */
+  /* ── 7. Contribution Calendar ─────────────── */
   .activity-listing,
   .ContributionCalendar .graph-canvas,
   .ContributionCalendar .graph-canvas > div {
     width: 100% !important;
     max-width: 100% !important;
-    align-items: stretch !important;
   }
-  /* use fixed layout to force the width to be evenly divided, preventing empty cells from collapsing */
+  /* auto layout */
   table.ContributionCalendar-grid.js-calendar-graph-table {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 100% !important;
-    table-layout: fixed !important;
+    table-layout: auto !important;
   }
   /* protect the left label column -  weekday labels */
-  table.ContributionCalendar-grid td.ContributionCalendar-label {
+  table.ContributionCalendar-grid td.ContributionCalendar-label,
+  table.ContributionCalendar-grid thead td:first-child {
     width: 36px !important;
-    vertical-align: bottom !important;
-    padding-right: 8px !important;
+    min-width: 36px !important;
+    max-width: 36px !important;
+    white-space: nowrap !important;
   }
-  /* let the fixed layout take over the width (green grid) */
+  /* extremely brute-force "maximum" scale-up hack */
+  /* exact average - set a maximum and equal absolute value for all cells (200px). The cell will be forced to shrink proportionally because of the outer layer is 100% locked */
   table.ContributionCalendar-grid td.ContributionCalendar-day {
-    width: auto !important;
-    height: auto !important;
-    aspect-ratio: 1 / 1 !important;
-    border-radius: 3px !important; /* rounded corners */
+    width: 200px !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    height: 11px !important;
+    aspect-ratio: auto !important;
+    border-radius: 2px !important;
+  }
+  /* lock row height to maintain the visual layout of the blocks */
+  table.ContributionCalendar-grid tbody tr {
+    height: 11px !important;
+  }
+  table.ContributionCalendar-grid thead tr {
+    height: 15px !important;
   }
 
 } /* @-moz-document: github.com */
