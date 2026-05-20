@@ -1,3 +1,11 @@
+## [1.0.5](https://github.com/marslo/github-optimized-layout/compare/v1.0.4...v1.0.5) (2026-05-20)
+
+### ci
+
+* ci: fix the 'Node.js 20 actions are deprecated' issue in pre-commit workflow
+* ci: remove `Signed-off-by` from changelog and release notes
+* ci: update pre-commit workflow
+
 ## [1.0.4](https://github.com/marslo/github-optimized-layout/compare/v1.0.3...v1.0.4) (2026-05-20)
 
 ### CI/CD
