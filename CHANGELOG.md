@@ -1,3 +1,20 @@
+## [1.0.4](https://github.com/marslo/github-optimized-layout/compare/v1.0.3...v1.0.4) (2026-05-20)
+
+### CI/CD
+
+* ci(workflow): using pre-commit workflow instead of pre-commit application - to prevent PR auto creation
+  Signed-off-by: marslo <marslo.jiao@gmail.com>
+
+### Others
+
+* chore: widen the Contribution Calendar (green cell)
+  Signed-off-by: marslo <marslo.jiao@gmail.com>
+
+### Bug Fixes
+
+* fix: resolving the issue of cells being uneven in width
+  Signed-off-by: marslo <marslo.jiao@gmail.com>
+
 ## [1.0.3](https://github.com/marslo/github-optimized-layout/compare/v1.0.2...v1.0.3) (2026-05-15)
 
 ### Bug Fixes
