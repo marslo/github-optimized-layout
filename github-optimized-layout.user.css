@@ -155,9 +155,9 @@
   /* protect the left label column -  weekday labels */
   table.ContributionCalendar-grid td.ContributionCalendar-label,
   table.ContributionCalendar-grid thead td:first-child {
-    width: 36px !important;
-    min-width: 36px !important;
-    max-width: 36px !important;
+    width: 38px !important;
+    min-width: 38px !important;
+    max-width: 38px !important;
     white-space: nowrap !important;
   }
   /* extremely brute-force "maximum" scale-up hack */
@@ -169,7 +169,7 @@
 
     height: 11px !important;
     aspect-ratio: auto !important;
-    border-radius: 2px !important;
+    border-radius: 3px !important;
   }
   /* lock row height to maintain the visual layout of the blocks */
   table.ContributionCalendar-grid tbody tr {
