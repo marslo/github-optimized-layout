@@ -4,6 +4,8 @@ Optimized GitHub layout: 85vw centered width for readability, full-width for dif
 
 ![example](./screenshots/github-optimized-layout.png)
 
+---
+
 ## Prerequisites
 
 | EXTENSION                                                          | PURPOSE                                                                                                                                                                               |
@@ -53,10 +55,11 @@ Highlights trailing whitespace (spaces at end of line) with a red background in 
 | New Issue                                                | 85vw  | Constrained for readability       |
 | Gist                                                     | 85vw  | Matches the rest of GitHub        |
 | Profile (Overview / Repos / Projects / Packages / Stars) | 85vw  | Via `container-xl` constraint     |
+|                                                          |       |                                   |
 | Commit detail                                            | 100%  | Diffs need horizontal space       |
 | PR Files changed                                         | 100%  | Same                              |
 | PR Checks                                                | 100%  | Diff viewer wraps the layout root |
-| Actions / Security                                       | 100%  | Uses its own full-width layout    |
+| Actions / Security /Models                               | 100%  | Uses its own full-width layout    |
 
 ### Customization
 
