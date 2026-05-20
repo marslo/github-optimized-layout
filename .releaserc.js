@@ -36,17 +36,27 @@ module.exports = {
             'ci': 'CI/CD'
           };
 
-          // change type: this directly determines the ## header in CHANGELOG
-          if (sectionMap[clonedCommit.type]) {
-            clonedCommit.type = sectionMap[clonedCommit.type];
+          const isSignoff = (line) => /^\s*Signed-off-by:/i.test(line);
+
+          // commit body - keep two spaces for sub-list alignment in body indentation
+          if (clonedCommit.body) {
+            const cleanedBodyLines = clonedCommit.body.split('\n').filter(line => !isSignoff(line));
+            clonedCommit.body = cleanedBodyLines.length > 0
+              ? cleanedBodyLines.map(line => '  ' + line).join('\n')
+              : null;
           }
 
-          // body indentation (keep two spaces for sub-list alignment)
-          if (clonedCommit.body) {
-            clonedCommit.body = clonedCommit.body
+          // footer
+          if (clonedCommit.footer) {
+            clonedCommit.footer = clonedCommit.footer
               .split('\n')
-              .map(line => '  ' + line)
-              .join('\n');
+              .filter(line => !isSignoff(line))
+              .join('\n').trim() || null;
+          }
+
+          // notes
+          if (Array.isArray(clonedCommit.notes)) {
+            clonedCommit.notes = clonedCommit.notes.filter(n => !isSignoff(n.text || n.title || ''));
           }
 
           // return the modified commit object, note: we did not change the subject,
@@ -58,10 +68,14 @@ module.exports = {
     }],
     ["@semantic-release/changelog", { "changelogFile": "CHANGELOG.md" }],
     ["@semantic-release/exec", {
-      "prepareCmd": "sed -i 's/@version        .*/@version        ${nextRelease.version}/' github-optimized-layout.user.css && pre-commit run --files CHANGELOG.md github-optimized-layout.user.css || true"
+      "prepareCmd": [
+        "sed -i 's/@version.*/@version        ${nextRelease.version}/' github-optimized-layout.user.css",
+        "pre-commit run --files CHANGELOG.md github-optimized-layout.user.css",
+        "true"
+      ].join(' && ')
     }],
     ["@semantic-release/git", {
-      "assets": ["CHANGELOG.md", "github-optimized-layout.user.css"],
+      "assets": [ "CHANGELOG.md", "github-optimized-layout.user.css" ],
       "message": "chore(release): v${nextRelease.version}"
     }],
     "@semantic-release/github"
