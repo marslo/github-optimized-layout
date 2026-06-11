@@ -36,30 +36,32 @@
   [class*="IssueCreatePage-module__createPane"],
   [class*="IssueCreatePage-module__createPaneContainer"],
   [class*="IssueCreatePane-module__createPane"],
-  [class*="IssueCreatePane-module__createPaneContainer"] {
+  [class*="IssueCreatePane-module__createPaneContainer"],
+  [class*="PageLayoutRoot"]:has([data-testid="commit-header"]),
+  react-app[app-name="commit"] [class*="PageLayoutRoot"],
+  react-app[app-name="branches"] [class*="PageLayoutRoot"],
+  [class*="PageLayoutRoot"]:has([data-testid="branches-page"]) {
     max-width: var(--gh-custom-width) !important;
     min-width: var(--gh-min-width) !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
-  /* ── 2. Force FULL WIDTH for Detail Pages (Diffs/Commits/Code) ─ */
+  /* ── 2. Force FULL WIDTH for Detail Pages (Diffs/Code) ─ */
+  /* Diff */
   [class*="PageLayoutRoot"]:has([id^="diff-"]),
-  [class*="PageLayoutRoot"]:has([data-testid="commit-header"]),
-  [class*="PageLayoutRoot"]:has([class*="CommitHeader-module"]),
-  react-app[app-name="commit"] [class*="PageLayoutRoot"],
-  /* PR Checks: diff-comparison-viewer-container wraps PageLayoutRoot (not inside it) */
+  /* PR Checks */
   #diff-comparison-viewer-container [class*="PageLayoutRoot"],
   [class*="DiffComparisonViewer-module"] [class*="PageLayoutRoot"],
   /* Repository file browser (tree & blob view) */
   [class*="PageLayoutRoot"]:has([class*="ReposFileTree"]),
-  /* github actions */
+  /* GitHub Actions */
   body:has(#actions-tab[aria-current="page"]) .container-xl,
   body:has(#actions-tab[aria-current="page"]) .container-lg,
   .container-xl:has(split-page-layout),
   .container-xl:has([data-url*="/actions/runs/"]),
-  /* identity full-width React page automatically - i.e.: Models Tab */
-  body:not(:has(react-app[app-name="code-view"])) [class*="PageLayoutRoot"]:not([class*="ThreePanesLayout"]):has([data-width="full"]) {
+  /* identity full-width React page automatically: - includes: Models Tab, ...; - excludes: branches page ( url contains `/branches/` )/commit pages */
+  body:not(:has(react-app[app-name^="commit"])):not(:has(react-app[app-name="branches"])):not(:has(react-app[app-name="code-view"])) [class*="PageLayoutRoot"]:not([class*="ThreePanesLayout"]):has([data-width="full"]) {
     max-width: 100% !important;
     width: 100% !important;
   }
