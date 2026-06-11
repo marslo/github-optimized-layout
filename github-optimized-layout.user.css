@@ -179,4 +179,59 @@
     height: 15px !important;
   }
 
+  /* ── 8. Branch List Selection ─────────────── */
+  /* outer container: absolutely single row, horizontally arranged, vertically centered */
+  button.overview-ref-selector [data-component="buttonContent"] {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 4px !important; /* uniform spacing */
+    justify-content: flex-start !important;
+  }
+  /* the front and back icons (if present) are of fixed size, vertically centered, and do not stretch */
+  button.overview-ref-selector [data-component="leadingVisual"],
+  button.overview-ref-selector [data-component="trailingVisual"] {
+    display: flex !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+    height: 100% !important;
+  }
+  /* remove unnecessary height and use flex to center all elements vertically to prevent ghost heights */
+  button.overview-ref-selector [data-component="text"],
+  button.overview-ref-selector [data-component="text"] > div,
+  button.overview-ref-selector .ref-selector-button-text-container {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+  }
+  /* don't hide the header (because it contains the icon), but flatten it and center it vertically */
+  button.overview-ref-selector [class*="RefSelectorOverlayHeader"] {
+    display: flex !important;
+    align-items: center !important; /* force vertical centering within the Header */
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    line-height: normal !important;
+  }
+  /* make sure the icons in the header are also vertically centered. */
+  button.overview-ref-selector [class*="RefSelectorOverlayHeader"] svg {
+    display: block !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+  }
+  /* ensure that the lowest-level text nodes are correctly punctuated. */
+  button.overview-ref-selector .ref-selector-button-text-container span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+    line-height: normal !important;
+  }
+
 } /* @-moz-document: github.com */
