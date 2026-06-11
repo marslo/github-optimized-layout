@@ -1,3 +1,17 @@
+## [1.1.0](https://github.com/marslo/github-optimized-layout/compare/v1.0.6...v1.1.0) (2026-06-11)
+
+### ⚠ BREAKING CHANGE
+
+* set 85vw width for commits history page and branch list page
+
+Signed-off-by: marslo <marslo.jiao@gmail.com>
+
+### refactor
+
+* refactor!: remove full width(100%) for commits(history) and branch list
+
+BREAKING CHANGE: set 85vw width for commits history page and branch list page
+
 ## [1.0.6](https://github.com/marslo/github-optimized-layout/compare/v1.0.5...v1.0.6) (2026-06-11)
 
 ### fix

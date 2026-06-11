@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name           Github Optimized Layout
-@version        1.0.6
+@version        1.1.0
 @namespace      github.com/marslo
 @description    Optimized layout for github.com and gist.github.com, with a max width of 85vw and full-width diffs/commits. Also includes some minor component fixes for PR lists and merge boxes. Based on the "Github Full Width" style by user 1j01, but with a more targeted approach to avoid breaking pages that rely on the default 100% width (like Actions and Security). The style uses a combination of root-level variables for easy customization and specific selectors to ensure it only affects the intended layout containers. The goal is to provide a more comfortable reading experience without sacrificing functionality or breaking any pages.
 @author         marslo
