@@ -1,3 +1,9 @@
+## [1.0.6](https://github.com/marslo/github-optimized-layout/compare/v1.0.5...v1.0.6) (2026-06-11)
+
+### fix
+
+* fix: branch show layer after selection abnormal, set the text center vertically
+
 ## [1.0.5](https://github.com/marslo/github-optimized-layout/compare/v1.0.4...v1.0.5) (2026-05-20)
 
 ### ci
