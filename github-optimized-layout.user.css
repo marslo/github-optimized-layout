@@ -69,7 +69,7 @@
   /* ── 3. Inner containers: Stretch to fill the parent ─────────── */
   [class*="PageLayoutRoot"] .container-lg,
   [class*="PageLayoutRoot"] .container-xl,
-  [class*="PageLayoutRoot"] [class*="PageLayout-"]:not([class*="Pane"]),
+  [class*="PageLayoutRoot"] [class*="PageLayout-"]:not([class*="Pane"]):not([class*="Sidebar"]),
   [class*="PageLayoutRoot"] [class*="PageLayoutWrapper"],
   [class*="PageLayoutRoot"] [class*="ThreePanesLayout"],
   [class*="PageLayoutRoot"] [data-width="large"],

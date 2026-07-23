@@ -1,5 +1,11 @@
 # yamllint disable rule:indentation
 ---
+# pin the Node used by node-language hooks (stylelint) to an LTS whose npm (10.x)
+# still tolerates the deprecated `--ignore-prepublish` flag that pre-commit 4.6.x
+# passes during hook install. Node 24+/npm 11 hard-error on it (EUNKNOWNCONFIG).
+default_language_version:
+  node: 22.11.0
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -34,7 +40,7 @@ repos:
         args: [--whitespaces-count, '2']
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
-    rev: v17.13.0
+    rev: v17.14.1
     hooks:
       - id: stylelint
         name: Stylelint
@@ -44,7 +50,7 @@ repos:
         files: '\.css$'
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.47.2
+    rev: v1.48.0
     hooks:
       - id: typos
         name: Typos
