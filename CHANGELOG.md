@@ -1,3 +1,15 @@
+## [1.1.1](https://github.com/marslo/github-optimized-layout/compare/v1.1.0...v1.1.1) (2026-07-23)
+
+### Bug Fixes
+
+* fix: keep issues-list nav sidebar at its natural width
+
+### CI/CD
+
+* ci(releaserc.js): upgrade releaserc.js for `conventional-changelog-conventionalcommits` - v10.0.0 BREAKING CHANGES
+  - check more : https://github.com/conventional-changelog/conventional-changelog/commit/78761ae19b4711260d015f599316f2558804cbbc
+  - release notes: https://github.com/conventional-changelog/conventional-changelog/releases/tag/conventional-changelog-conventionalcommits-v10.0.0
+
 ## [1.1.0](https://github.com/marslo/github-optimized-layout/compare/v1.0.6...v1.1.0) (2026-06-11)
 
 ### ⚠ BREAKING CHANGE
