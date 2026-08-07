@@ -1,3 +1,13 @@
+## [1.1.3](https://github.com/marslo/github-optimized-layout/compare/v1.1.2...v1.1.3) (2026-08-07)
+
+### Bug Fixes
+
+* fix(issues): keep issue/PR detail header title full-width on widened pages
+
+### CI/CD
+
+* ci(releaserc.js): add solution to update changelog with or without `changelogTitle`
+
 ## [1.1.2](https://github.com/marslo/github-optimized-layout/compare/v1.1.1...v1.1.2) (2026-07-28)
 
 ### CI/CD
