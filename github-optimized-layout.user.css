@@ -127,6 +127,16 @@
     min-width: 0 !important;
   }
 
+  /* Issue detail header title width fix */
+  /* (a) PageHeader grid pins the `title-area` column and lets the `actions` column absorb free space, so the title stays narrow while the page widens. reassign the flexible track to `title-area` (1fr) and shrink `actions` to content width. column order maps to grid-template-areas: leading-action breadcrumbs title-area trailing-action actions */
+  [data-component="PageHeader"][class*="HeaderViewer-module__headerContainer"] {
+    grid-template-columns: auto auto 1fr auto auto !important;
+  }
+  /* (b) the title h1 itself carries a fixed max-width that caps the visible text even after the column is widened. release it to fill the title-area */
+  [data-component="PH_Title"][class*="HeaderViewer-module__PageHeader_Title"] {
+    max-width: 100% !important;
+  }
+
   /* Copilot / Releases / Gist Sidebars */
   [class*="__markersWrapper__"], [class*="AutomatedReviewDiffEntry"] { max-width: 45vw !important; width: 45vw !important; }
   .col-md-2.flex-md-column { flex: 0 0 auto !important; max-width: 200px !important; }
