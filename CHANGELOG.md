@@ -1,3 +1,9 @@
+## [1.1.4](https://github.com/marslo/github-optimized-layout/compare/v1.1.3...v1.1.4) (2026-08-26)
+
+### CI/CD
+
+* **changelog**, **releaserc.js**: format commit lines with bold scopes and per-commit sha links ([0125a63](https://github.com/marslo/github-optimized-layout/commit/0125a638d6a770aaa834f6085ed0dc61c206c81c))
+
 ## [1.1.3](https://github.com/marslo/github-optimized-layout/compare/v1.1.2...v1.1.3) (2026-08-07)
 
 ### Bug Fixes
