@@ -56,8 +56,13 @@ const headerPartial = `## {{#if @root.linkCompare~}}
 {{/if}}
 `;
 
-// {{header}} keeps the original "feat: ..." prefix; body/footer follow (signoff stripped in transform)
-const commitPartial = "* {{header}}\n{{#if body}}\n{{body}}\n{{/if}}\n{{#if footer}}\n\n{{footer}}\n{{/if}}\n";
+// commit line: bold each comma-split scope as **scope:** (built as scopeFmt in transform) and keep the subject. PR commits carry an inline
+// "(#N)" that GitHub auto-links, so leave them link-free; only direct pushes (no "(#N)") get an
+// appended ([shortHash](…/commit/<hash>)) link. body/footer follow (built in transform)
+const commitPartial =
+  '*{{#if scopeFmt}} {{scopeFmt}}:{{/if}} {{#if subject}}{{subject}}{{else}}{{header}}{{/if}}' +
+  '{{#unless hasIssueRef}}{{#if @root.linkReferences}} ([{{shortHash}}]({{@root.host}}/{{@root.owner}}/{{@root.repository}}/commit/{{hash}})){{/if}}{{/unless}}' +
+  '\n{{#if body}}\n{{body}}\n{{/if}}\n{{#if footer}}\n\n{{footer}}\n{{/if}}\n';
 
 // ── dynamic changelog title ──
 // reuse an existing level-1 header (`# ...`) at the very top of CHANGELOG.md so new
@@ -116,6 +121,21 @@ module.exports = {
           // type -> section label (drives the "### <section>" grouping)
           if (TYPE_TO_SECTION[c.type]) {
             c.type = TYPE_TO_SECTION[c.type];
+          }
+
+          // preset's default transform (overridden here) normally sets shortHash; restore it
+          // so the commit link text isn't empty ("[](…/commit/<hash>)")
+          if (typeof c.hash === 'string') {
+            c.shortHash = c.hash.substring(0, 7);
+          }
+
+          // PR commits carry an inline "(#N)" that GitHub auto-links; keep it verbatim and skip
+          // the sha link. direct pushes (no "(#N)") get the commit-sha link (see commitPartial)
+          c.hasIssueRef = /\(#\d+\)/.test(c.subject || '');
+
+          // comma-split the scope and bold each part -> "**a**, **b**" (rendered via scopeFmt)
+          if (c.scope) {
+            c.scopeFmt = c.scope.split(',').map(s => '**' + s.trim() + '**').join(', ');
           }
 
           // the parser may split trailing body lines into `footer` (e.g. a bullet containing an issue-like "#N");
