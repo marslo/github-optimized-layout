@@ -37,6 +37,9 @@
   [class*="IssueCreatePage-module__createPaneContainer"],
   [class*="IssueCreatePane-module__createPane"],
   [class*="IssueCreatePane-module__createPaneContainer"],
+  /* hashed css-module names ( `createPane__*` / `createPaneContainer__*`, GitHub caps the container at 1280px ) */
+  [class*="createPane__"],
+  [class*="createPaneContainer__"],
   [class*="PageLayoutRoot"]:has([data-testid="commit-header"]),
   react-app[app-name="commit"] [class*="PageLayoutRoot"],
   react-app[app-name="branches"] [class*="PageLayoutRoot"],
@@ -53,15 +56,15 @@
   /* PR Checks */
   #diff-comparison-viewer-container [class*="PageLayoutRoot"],
   [class*="DiffComparisonViewer-module"] [class*="PageLayoutRoot"],
-  /* Repository file browser (tree & blob view) */
-  [class*="PageLayoutRoot"]:has([class*="ReposFileTree"]),
+  /* Repository file browser (tree & blob view): file tree expanded ( `#repos-file-tree` ) or collapsed ( `expand-file-tree-button` ), breadcrumbs; repo overview shares `react-app[app-name="code-view"]`, so excluded via `.overview-ref-selector` */
+  [class*="PageLayoutRoot"]:has(#repos-file-tree, [data-testid="expand-file-tree-button"], [data-testid="breadcrumbs"]):not(:has(.overview-ref-selector)),
   /* GitHub Actions */
   body:has(#actions-tab[aria-current="page"]) .container-xl,
   body:has(#actions-tab[aria-current="page"]) .container-lg,
   .container-xl:has(split-page-layout),
   .container-xl:has([data-url*="/actions/runs/"]),
-  /* identity full-width React page automatically: - includes: Models Tab, ...; - excludes: branches page ( url contains `/branches/` )/commit pages */
-  body:not(:has(react-app[app-name^="commit"])):not(:has(react-app[app-name="branches"])):not(:has(react-app[app-name="code-view"])) [class*="PageLayoutRoot"]:not([class*="ThreePanesLayout"]):has([data-width="full"]) {
+  /* identity full-width React page automatically: - includes: Models Tab, ...; - excludes: branches page ( url contains `/branches/` )/commit pages, repo overview ( `.overview-ref-selector` ) and issue detail ( `issue-header` ), both now rendered by `react-app[app-name="repo"]` */
+  body:not(:has(react-app[app-name^="commit"])):not(:has(react-app[app-name="branches"])):not(:has(react-app[app-name="code-view"])) [class*="PageLayoutRoot"]:not([class*="ThreePanesLayout"]):not(:has(.overview-ref-selector, [data-testid="issue-header"])):has([data-width="full"]) {
     max-width: 100% !important;
     width: 100% !important;
   }
@@ -81,13 +84,19 @@
   }
 
   /* deep-dive structure fixes */
-  :is([class*="IssueCreatePage-module"], [class*="IssueCreatePane-module"], [class*="ThreePanesLayout"]) > div {
+  :is([class*="IssueCreatePage-module"], [class*="IssueCreatePane-module"], [class*="createPane__"], [class*="createPaneContainer__"], [class*="ThreePanesLayout"]) > div {
     max-width: 100% !important;
     width: 100% !important;
   }
 
   /* PR Conversation specific fix */
   [class*="Conversations-module__wrapper"] {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Issue detail content container ( hashed `contentContainer__*`, formerly `ContentWrapper-module__contentContainer` ) carries its own 1280px cap */
+  [data-testid="issue-artifacts-panel-layout"] [class*="contentContainer__"] {
     max-width: 100% !important;
     width: 100% !important;
   }
@@ -122,9 +131,11 @@
   }
 
   /* PR merge input box width */
+  /* max-width overrides RGH suggest-commit-title-limit's `max-width: min-content` on the title wrapper span; without it the span collapses to ~content width once the input's 72ch is dropped to 100% */
   [class*="MergeBox-module"] :is(span[class*="TextInputWrapper"], input[class*="Input"]) {
     width: 100% !important;
     min-width: 0 !important;
+    max-width: 100% !important;
   }
 
   /* Issue detail header title width fix */
