@@ -1,3 +1,14 @@
+## [1.1.5](https://github.com/marslo/github-optimized-layout/compare/v1.1.4...v1.1.5) (2026-10-20)
+
+### Bug Fixes
+
+* **layout**: adapt width rules to hashed css-module classes ([80993e3](https://github.com/marslo/github-optimized-layout/commit/80993e3e71f2bf2f27d9a41906ed8e64b2f4d6b3))
+  - force full width on tree/blob views via `#repos-file-tree`, `expand-file-tree-button` and `breadcrumbs`, replacing the dead `ReposFileTree` selector
+  - keep repo overview and issue detail at 85vw by excluding `.overview-ref-selector` and `issue-header` from the full-width React rule
+  - lift the 1280px cap on issue detail `contentContainer__*` and new-issue `createPane__*` / `createPaneContainer__*`
+  - add `max-width: 100%` to the MergeBox title input to override RGH `min-content`
+  - bump stylelint hook to `v17.16.0` and typos to `v1.51.1`
+
 ## [1.1.4](https://github.com/marslo/github-optimized-layout/compare/v1.1.3...v1.1.4) (2026-08-26)
 
 ### CI/CD
