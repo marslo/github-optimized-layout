@@ -69,6 +69,22 @@
     width: 100% !important;
   }
 
+  /* PR Overview ( `?overview=true` ) and Commits: share `#diff-comparison-viewer-container` with Checks / Files changed, so the full-width rule above also catches them; cap the outer root back to the 85vw limit ( Checks and Files changed stay 100% ). detected by page-specific content since the container itself has no per-tab marker: Overview ( timeline / sticky sidebar; after posting a reply the page re-renders as the rails timeline `.js-pull-discussion-timeline` without those test ids ), Commits ( `commits-list` ) */
+  #diff-comparison-viewer-container:has([data-testid="timeline-item"], [data-testid="sticky-sidebar"], [data-testid="commits-list"], .js-pull-discussion-timeline) > [class*="PageLayoutRoot"] {
+    max-width: var(--gh-custom-width) !important;
+    min-width: var(--gh-min-width) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  /* PR header ( top banners / title / actions / tabs ) on Overview and Files changed: hashed `constrainedHeader__*` caps it at `breakpoint-large + 24px + pane-width-large` and centers it; release the cap so the title fills its root ( 85vw on Overview / Commits, 100% on Checks / Files changed ) */
+  #diff-comparison-viewer-container [class*="constrainedHeader__"] {
+    max-width: 100% !important;
+  }
+  /* PR Commits ( `commits-list` ) and Checks ( `checksRoot` ) body: hashed `constrainedContent__*` caps it at `--breakpoint-xlarge` ( 1280px ) and centers it; release the cap so it fills its root ( 85vw on Commits, 100% on Checks ) and lines up with the header */
+  #diff-comparison-viewer-container [class*="constrainedContent__"] {
+    max-width: 100% !important;
+  }
+
   /* ── 3. Inner containers: Stretch to fill the parent ─────────── */
   [class*="PageLayoutRoot"] .container-lg,
   [class*="PageLayoutRoot"] .container-xl,

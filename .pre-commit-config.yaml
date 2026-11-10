@@ -4,7 +4,7 @@
 # still tolerates the deprecated `--ignore-prepublish` flag that pre-commit 4.6.x
 # passes during hook install. Node 24+/npm 11 hard-error on it (EUNKNOWNCONFIG).
 default_language_version:
-  node: 22.11.0
+  node: 26.13.0
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -40,17 +40,17 @@ repos:
         args: [--whitespaces-count, '2']
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
-    rev: v17.16.0
+    rev: v18.0.0
     hooks:
       - id: stylelint
         name: Stylelint
         additional_dependencies:
-          - 'stylelint@17.11.0'
+          - 'stylelint@18.0.0'
         args: ['--fix']
         files: '\.css$'
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.51.1
+    rev: v1.52.0
     hooks:
       - id: typos
         name: Typos
