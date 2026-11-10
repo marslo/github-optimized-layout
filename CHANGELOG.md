@@ -1,3 +1,20 @@
+## [1.1.6](https://github.com/marslo/github-optimized-layout/compare/v1.1.5...v1.1.6) (2026-11-10)
+
+### Bug Fixes
+
+* **layout**: cap PR overview and commits at 85vw ([7a083d5](https://github.com/marslo/github-optimized-layout/commit/7a083d57b80234d2de32ff2be18bb32209c19cfd))
+  - cap the shared `#diff-comparison-viewer-container` root at `--gh-custom-width` for overview and commits content
+  - match `.js-pull-discussion-timeline` so the page stays 85vw after posting a reply
+  - release `constrainedHeader__*` and `constrainedContent__*` max-width so title and body fill their root
+  - keep checks and files changed full width
+
+### CI/CD
+
+* **release**: drop breaking-change footer from notes body ([86d87ff](https://github.com/marslo/github-optimized-layout/commit/86d87ff51437e92417a72ea8b1a70be08d7b3fcc))
+  - add `stripNotes()` to remove `BREAKING CHANGE:` / `BREAKING-CHANGE:` blocks folded into the commit body
+  - keep trailers after a note, such as `Closes #N`
+  - collapse repeated blank lines and trim trailing blanks in the rendered body
+
 ## [1.1.5](https://github.com/marslo/github-optimized-layout/compare/v1.1.4...v1.1.5) (2026-10-20)
 
 ### Bug Fixes
