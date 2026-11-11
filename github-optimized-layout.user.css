@@ -63,8 +63,8 @@
   body:has(#actions-tab[aria-current="page"]) .container-lg,
   .container-xl:has(split-page-layout),
   .container-xl:has([data-url*="/actions/runs/"]),
-  /* identity full-width React page automatically: - includes: Models Tab, ...; - excludes: branches page ( url contains `/branches/` )/commit pages, repo overview ( `.overview-ref-selector` ), issue detail ( `issue-header` ) and Agents sessions list ( `#session-filter` ), all now rendered by `react-app[app-name="repo"]` */
-  body:not(:has(react-app[app-name^="commit"])):not(:has(react-app[app-name="branches"])):not(:has(react-app[app-name="code-view"])) [class*="PageLayoutRoot"]:not([class*="ThreePanesLayout"]):not(:has(.overview-ref-selector, [data-testid="issue-header"], #session-filter)):has([data-width="full"]) {
+  /* identity full-width React page automatically: - includes: Models Tab, ...; - excludes: branches page ( url contains `/branches/` )/commit pages, repo overview ( `.overview-ref-selector` ), issue detail ( `issue-header` ) and Agents sessions list ( `[id="session-filter"]` ), all now rendered by `react-app[app-name="repo"]`. NOTE: keep an attribute selector here, not `#id`: a `#id` inside `:not(:has())` adds an id to this selector's specificity, which then outranks the id-based PR Overview / Commits 85vw rule below */
+  body:not(:has(react-app[app-name^="commit"])):not(:has(react-app[app-name="branches"])):not(:has(react-app[app-name="code-view"])) [class*="PageLayoutRoot"]:not([class*="ThreePanesLayout"]):not(:has(.overview-ref-selector, [data-testid="issue-header"], [id="session-filter"])):has([data-width="full"]) {
     max-width: 100% !important;
     width: 100% !important;
   }
