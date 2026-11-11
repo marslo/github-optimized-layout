@@ -63,8 +63,8 @@
   body:has(#actions-tab[aria-current="page"]) .container-lg,
   .container-xl:has(split-page-layout),
   .container-xl:has([data-url*="/actions/runs/"]),
-  /* identity full-width React page automatically: - includes: Models Tab, ...; - excludes: branches page ( url contains `/branches/` )/commit pages, repo overview ( `.overview-ref-selector` ) and issue detail ( `issue-header` ), both now rendered by `react-app[app-name="repo"]` */
-  body:not(:has(react-app[app-name^="commit"])):not(:has(react-app[app-name="branches"])):not(:has(react-app[app-name="code-view"])) [class*="PageLayoutRoot"]:not([class*="ThreePanesLayout"]):not(:has(.overview-ref-selector, [data-testid="issue-header"])):has([data-width="full"]) {
+  /* identity full-width React page automatically: - includes: Models Tab, ...; - excludes: branches page ( url contains `/branches/` )/commit pages, repo overview ( `.overview-ref-selector` ), issue detail ( `issue-header` ) and Agents sessions list ( `#session-filter` ), all now rendered by `react-app[app-name="repo"]` */
+  body:not(:has(react-app[app-name^="commit"])):not(:has(react-app[app-name="branches"])):not(:has(react-app[app-name="code-view"])) [class*="PageLayoutRoot"]:not([class*="ThreePanesLayout"]):not(:has(.overview-ref-selector, [data-testid="issue-header"], #session-filter)):has([data-width="full"]) {
     max-width: 100% !important;
     width: 100% !important;
   }
@@ -82,6 +82,11 @@
   }
   /* PR Commits ( `commits-list` ) and Checks ( `checksRoot` ) body: hashed `constrainedContent__*` caps it at `--breakpoint-xlarge` ( 1280px ) and centers it; release the cap so it fills its root ( 85vw on Commits, 100% on Checks ) and lines up with the header */
   #diff-comparison-viewer-container [class*="constrainedContent__"] {
+    max-width: 100% !important;
+  }
+
+  /* Agents ( `/agents`, sessions list ): the root falls back to the 85vw default from section 1 ( excluded from the full-width rule above via `#session-filter` ); hashed `content__*` ( the one holding `#session-filter` ) caps the page body at 1280px, release it so it fills the root next to the sidebar */
+  [class*="PageLayoutRoot"] [class*="content__"]:has(#session-filter) {
     max-width: 100% !important;
   }
 
