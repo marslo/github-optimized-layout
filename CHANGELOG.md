@@ -1,3 +1,15 @@
+## [1.1.7](https://github.com/marslo/github-optimized-layout/compare/v1.1.6...v1.1.7) (2026-11-11)
+
+### Bug Fixes
+
+* **layout**: cap Agents sessions list at 85vw ([bee71ec](https://github.com/marslo/github-optimized-layout/commit/bee71ecc9340a563e15e7cc9ef90ac14fb9cc837))
+  - exclude pages containing `#session-filter` from the auto full-width React page rule
+  - release the 1280px `content__*` max-width so the body fills the root
+* **layout**: restore 85vw on PR overview and commits ([53cb2d6](https://github.com/marslo/github-optimized-layout/commit/53cb2d62393fe5041c644945b4a23698093122a8))
+  - replace `#session-filter` with `[id="session-filter"]` in the auto full-width rule exclusion
+  - stop the full-width rule from outranking the id-based overview and commits 85vw rule
+  - note in the comment to keep attribute selectors inside `:not(:has())`
+
 ## [1.1.6](https://github.com/marslo/github-optimized-layout/compare/v1.1.5...v1.1.6) (2026-11-10)
 
 ### Bug Fixes
