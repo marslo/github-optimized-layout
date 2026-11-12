@@ -169,6 +169,12 @@
     max-width: 100% !important;
   }
 
+  /* Check run header commit message width fix */
+  /* github caps the title `h2.check-page-commit-message` at `max-width: 500px !important` ( 150px on narrow viewports ) and clips the rest with an ellipsis. release it so the whole message shows ( `h2.` raises specificity over github's `.check-page-commit-message` ) */
+  h2.check-page-commit-message {
+    max-width: none !important;
+  }
+
   /* Copilot / Releases / Gist Sidebars */
   [class*="__markersWrapper__"], [class*="AutomatedReviewDiffEntry"] { max-width: 45vw !important; width: 45vw !important; }
   .col-md-2.flex-md-column { flex: 0 0 auto !important; max-width: 200px !important; }
