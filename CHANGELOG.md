@@ -1,3 +1,15 @@
+## [1.1.8](https://github.com/marslo/github-optimized-layout/compare/v1.1.7...v1.1.8) (2026-11-17)
+
+### Bug Fixes
+
+* **layout**: baseline-align PR review and timeline headers ([362736d](https://github.com/marslo/github-optimized-layout/commit/362736d40268493e2e353aa5aeb72b247a463569))
+  - baseline-align the file name and `Line N` in the review thread header
+  - baseline-align the author name and `Bot` label in timeline comment headers
+* **layout**: make Agents sessions list 100% wide ([24268a2](https://github.com/marslo/github-optimized-layout/commit/24268a2bde4caf528f87b6607448775f7b512fe1))
+  - stop excluding `#session-filter` pages from the auto full-width React page rule, so the Agents sessions list root is 100% again
+  - keep releasing the 1280px `content__*` cap so the page body fills the root
+* **layout**: show the whole commit message in the check run header by releasing github's `max-width: 500px !important` cap on `h2.check-page-commit-message` ([ca2288d](https://github.com/marslo/github-optimized-layout/commit/ca2288dcf6e02aaab4362fd8dc68d6774ac8b770))
+
 ## [1.1.7](https://github.com/marslo/github-optimized-layout/compare/v1.1.6...v1.1.7) (2026-11-11)
 
 ### Bug Fixes
