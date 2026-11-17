@@ -284,4 +284,28 @@
     line-height: normal !important;
   }
 
+  /* ── 9. PR Review Thread Header ───────────── */
+  /* file name ( mono font ) + "Line N" ( sans font ) row: baseline-align both items, same line-height, no vertical margin */
+  h2[data-component="Heading"]:has(> a.direction-rtl) {
+    display: flex !important;
+    align-items: baseline !important;
+    line-height: 1.5 !important;
+  }
+  h2[data-component="Heading"] > a.direction-rtl,
+  h2[data-component="Heading"] > a.direction-rtl ~ span.text-normal {
+    display: block !important;
+    align-self: baseline !important;
+    line-height: inherit !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* ── 10. PR Timeline Comment Header ───────── */
+  /* author name ( handwritten, enlarged ) + Bot label: baseline-align instead of center, matching the "4h ago" footer which is already baseline-aligned */
+  [data-testid="comment-header-left-side-items"] > [class*="TitleContainer__"] {
+    align-items: baseline !important;
+  }
+
 } /* @-moz-document: github.com */
