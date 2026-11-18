@@ -308,4 +308,31 @@
     align-items: baseline !important;
   }
 
+  /* ── 11. Release Page Meta Row ────────────── */
+  /* "avatar + author released this + time", tag, commit sha, Commits: github aligns the row to `flex-end` ( `.flex-items-end` wins over a row-level `align-items`, so center each item with `align-self` ), gives items uneven vertical margins ( `mb-2` / `my-md-2` ) and leaves each icon inline ( `vertical-align: text-bottom` ) next to a larger font, so icons and text drift apart; center each item, zero its vertical margin, and center the icon + text inside the links */
+  div.d-flex.flex-wrap.flex-items-end:has(> div > relative-time) > div {
+    display: flex !important;
+    align-items: center !important;
+    align-self: center !important;
+    gap: 4px;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    position: static !important;                              /* drop the inline `top: 1px` nudge on the commit item */
+  }
+  div.d-flex.flex-wrap.flex-items-end:has(> div > relative-time) > div > a,
+  div.d-flex.flex-wrap.flex-items-end:has(> div > relative-time) > div > a > .css-truncate {
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  div.d-flex.flex-wrap.flex-items-end:has(> div > relative-time) svg {
+    vertical-align: middle !important;
+    flex: 0 0 auto;
+  }
+  /* optical centering: glyph ink sits off its line box center and the offset depends on the font; trim the text box to cap height / alphabetic baseline ( Chrome 133+ ) so the caps / digits are what get centered against the icon, whatever the font */
+  div.d-flex.flex-wrap.flex-items-end:has(> div > relative-time) > div > a > .css-truncate > span,
+  div.d-flex.flex-wrap.flex-items-end:has(> div > relative-time) > div > a > span:not(.css-truncate),
+  div.d-flex.flex-wrap.flex-items-end:has(> div > relative-time) > div > a > code {
+    text-box: trim-both cap alphabetic;
+  }
+
 } /* @-moz-document: github.com */
