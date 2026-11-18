@@ -92,10 +92,15 @@ Refined GitHub supports custom CSS, but it causes **FOUC (Flash of Unstyled Cont
 
 The Tampermonkey script runs on PR diff pages (`github.com/*/pull/*`). It works together with Refined GitHub's "Show whitespace" feature:
 
-1. Refined GitHub marks whitespace characters with `[data-rgh-whitespace="space"]` spans
-2. The script scans each diff line from right to left
-3. Consecutive whitespace spans at the end of a line get a red highlight (`rgba(255, 60, 60, 0.3)`)
+1. Refined GitHub marks whitespace characters with `[data-rgh-whitespace="space|tab"]` spans
+2. The script groups them by diff line ( `.diff-text-inner` / `.blob-code-inner` ) and walks each line's text nodes from right to left, across nested syntax-token spans
+3. Whitespace spans before the first non-blank character get a red highlight (`rgba(255, 60, 60, 0.3)`)
 4. A `MutationObserver` re-scans when the DOM changes (lazy-loaded diffs, expanding files, etc.)
+
+> [!NOTE]
+> Since v1.1.0 "trailing" is judged per whole line: alignment spaces before an inline comment ( e.g. `key: value    # comment` ) sit inside a syntax-token span and are no longer flagged.
+
+The Stylus style hides the space dots outside PR pages ( section 6 ); it does not affect the red highlight, which is an inline `background-color`.
 
 ## Architecture
 
