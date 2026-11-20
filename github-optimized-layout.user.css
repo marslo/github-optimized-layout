@@ -335,4 +335,15 @@
     text-box: trim-both cap alphabetic;
   }
 
+  /* ── 12. Packages Registry Cards ──────────── */
+  /* "Choose a registry" cards ( title + description + Learn more ): the card body is a `flex-row flex-wrap`, so once the page is widened to 85vw the three items fit on one row and the description / button sit beside the title; stack them as a column ( keep them left-aligned, `flex-self-end` would push the button right ) */
+  div.d-flex.flex-row.flex-wrap.height-full:has(> h2):has(> p.color-fg-muted):has(> a.btn[aria-label^="Learn more about"]) {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+  }
+  div.d-flex.flex-row.flex-wrap.height-full:has(> h2):has(> p.color-fg-muted) > a.btn.flex-self-end[aria-label^="Learn more about"] {
+    align-self: flex-start !important;
+  }
+
 } /* @-moz-document: github.com */
