@@ -1,3 +1,21 @@
+## [1.1.9](https://github.com/marslo/github-optimized-layout/compare/v1.1.8...v1.1.9) (2026-11-20)
+
+### Bug Fixes
+
+* **github-optimized-layout**: stack packages registry card items ([ea362c3](https://github.com/marslo/github-optimized-layout/commit/ea362c321789c74ecb1ba813feb853d772c29a0d))
+  - force the card body `flex-row flex-wrap` into a column
+  - keep the `Learn more` button left-aligned
+  - scope rules via `:has()` to the registry cards only
+* **layout**: center release page meta row icons ([22e9675](https://github.com/marslo/github-optimized-layout/commit/22e9675e4f8897f80372f7071c9ed3e030a94c66))
+  - center the meta row and each of its items vertically
+  - center the icon and text inside the tag / commit / compare links
+  - drop the inline `top: 1px` nudge on the commit item
+* **tampermonkey**: judge trailing whitespace per diff line ([e570886](https://github.com/marslo/github-optimized-layout/commit/e57088630e4d3e2b1bdad9c909185f1dac408d89))
+  - walk each line's text nodes from the end instead of a span's siblings, so spaces nested in a token before an inline comment are no longer flagged
+  - mark tab spans as well as spaces ( `[data-rgh-whitespace]` )
+  - bump the trailing whitespace highlighter to `1.1.0` and refresh the Tampermonkey backup
+  - describe the per-line algorithm in the README and note that the Stylus dot-hiding CSS leaves the red highlight alone
+
 ## [1.1.8](https://github.com/marslo/github-optimized-layout/compare/v1.1.7...v1.1.8) (2026-11-17)
 
 ### Bug Fixes
