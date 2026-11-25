@@ -175,6 +175,12 @@
     max-width: none !important;
   }
 
+  /* Files changed split diff: equal 50% columns */
+  /* refined-github `no-unnecessary-split-diff-view` tags split tables with `.rgh-no-split-diff` ( it looks for the old `.deletion` / `.addition` classes, which the react diff no longer has, so every table is tagged ) and forces `table-layout: auto !important`, so the columns follow the code width. restore github's `table-layout: fixed` ( `tableLayoutFixed__*` ) for the react diff table only ( `[class*="diffLines__"]` raises specificity over RGH's `.rgh-no-split-diff` ) */
+  table[class*="diffLines__"].rgh-no-split-diff {
+    table-layout: fixed !important;
+  }
+
   /* Copilot / Releases / Gist Sidebars */
   [class*="__markersWrapper__"], [class*="AutomatedReviewDiffEntry"] { max-width: 45vw !important; width: 45vw !important; }
   .col-md-2.flex-md-column { flex: 0 0 auto !important; max-width: 200px !important; }
