@@ -1,3 +1,19 @@
+## [1.1.10](https://github.com/marslo/github-optimized-layout/compare/v1.1.9...v1.1.10) (2026-11-25)
+
+### Bug Fixes
+
+* **layout**: restore equal split diff columns ([8f1397a](https://github.com/marslo/github-optimized-layout/commit/8f1397a5dbc123943f2d334f516b5a3886d638b7))
+  - restore `table-layout: fixed` on react diff tables tagged `.rgh-no-split-diff`
+  - override the `table-layout: auto !important` set by refined-github `no-unnecessary-split-diff-view`
+  - scope to `[class*="diffLines__"]` so other tables are unaffected
+
+### CI/CD
+
+* **release**: use function templates for changelog notes ([5c771cc](https://github.com/marslo/github-optimized-layout/commit/5c771cc56918a499a73d4cafa502dab667960824))
+  - replace Handlebars `mainTemplate` / `headerPartial` / `commitPartial` strings with function versions
+  - add `template`, `preamblePartial` and `footerPartial` for `conventional-changelog-writer` 9
+  - fix `headerPartial is not a function` on `semantic-release` 26
+
 ## [1.1.9](https://github.com/marslo/github-optimized-layout/compare/v1.1.8...v1.1.9) (2026-11-20)
 
 ### Bug Fixes
